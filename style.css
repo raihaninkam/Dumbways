@@ -1,5 +1,6 @@
 * {
   margin: 0;
+  box-sizing: border-box;
 }
 
 body {
@@ -201,6 +202,7 @@ h5 {
   box-shadow: none;
   text-align: center;
   align-items: center;
+  
 }
 
 
@@ -209,3 +211,4 @@ h5 {
 
 
 /* contact end */
+
