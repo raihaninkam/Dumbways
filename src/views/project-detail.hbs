@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>{{project.projectName}}</title>
+
+  <!-- Bootstrap & Font Awesome -->
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: rgb(201, 201, 210);
+    }
+
+    .navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 50px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
+  margin-bottom: 3rem;
+
+}
+
+.navbar-brand {
+  color: #ff5722;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.collapse {
+  padding-left: 2rem;
+}
+
+.nav-link {
+  margin: 0 1rem;
+  font-weight: 500;
+}
+
+.btn {
+  background-color: rgb(2, 2, 58);
+  color: white;
+}
+
+    .container-detail {
+      padding: 40px;
+      background-color: white;
+      border-radius: 15px;
+      box-shadow: 0 0 30px rgba(0,0,0,0.05);
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .project-image {
+      width: 100%;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+
+    .title {
+      font-size: 2rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .info-label {
+      font-weight: 600;
+    }
+
+    .tech-icons i {
+      font-size: 1.5rem;
+      margin-right: 15px;
+    }
+
+    .project-description {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: #444;
+      margin-top: 30px;
+    }
+
+    .icon-text {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .icon-text i {
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+    <!-- NAVBAR START -->
+
+    {{> nav}}
+
+    <!-- NAVBAR END -->
+
+
+
+  <div class="container container-detail">
+    <h1 class="title">{{project.project_name}}</h1>
+
+    <div class="row mb-4">
+      <div class="col-md-7">
+        <img src="/uploads/{{project.image}}" class="project-image" alt="{{project.project_name}}">
+      </div>
+      <div class="col-md-5">
+        <div class="mb-4">
+          <h5 class="info-label">Duration</h5>
+          <div class="icon-text"><i class="fa-regular fa-calendar"></i> {{project.start_date}} – {{project.end_date}}</div>
+          <div class="icon-text"><i class="fa-regular fa-clock"></i> {{project.duration}}</div>
+        </div>
+
+        <div>
+          <h5 class="info-label">Technologies</h5>
+          <div class="tech-icons">
+            {{#each project.technologies}}
+              {{#if (eq this "NodeJs")}}<i class="fab fa-node" title="NodeJs"></i>{{/if}}
+              {{#if (eq this "ReactJs")}}<i class="fab fa-react" title="ReactJs"></i>{{/if}}
+              {{#if (eq this "NextJs")}}<i class="fab fa-js-square" title="NextJs"></i>{{/if}}
+              {{#if (eq this "TypeScript")}}<i class="bi bi-typescript" style="font-size: 1.35rem;" title="TypeScript"></i>{{/if}}
+            {{/each}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-description">
+      {{project.description}}
+      <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eaque voluptas aperiam animi sint reprehenderit assumenda facere tenetur hic expedita esse dolore impedit, numquam optio porro voluptates nemo ratione, vitae inventore quas iusto qui illo totam quam. Praesentium sapiente quia, consequuntur recusandae excepturi alias minima cupiditate ipsum eaque et. Reiciendis sunt eum commodi repellat amet! Ad illo dicta alias assumenda error dolorum, saepe est ipsa, debitis provident temporibus eaque cum quos at praesentium architecto aliquid. Fuga repudiandae perspiciatis eveniet mollitia exercitationem sequi vel magni dolor ipsum nam sit hic nemo ipsa similique labore enim, dolorum molestiae iste eum itaque corrupti modi distinctio quos? Ipsa recusandae adipisci iusto vitae, incidunt voluptatem molestiae laboriosam illum eaque nesciunt impedit doloribus. Odit laborum cum eum, ipsa totam et optio autem dolorem, amet deleniti nam commodi quae maxime sunt eius. Nulla necessitatibus voluptatum, vero impedit tempore at culpa deleniti illo nobis cum consectetur placeat possimus mollitia neque consequuntur repellat praesentium temporibus minus tempora qui delectus quisquam. Consectetur quis in eius sapiente soluta, molestias dolorum repudiandae nihil aliquid porro temporibus accusantium repellat possimus quasi excepturi! Libero nobis ad possimus quam consequuntur? Tempora provident neque minus perferendis, quo pariatur dolorem minima iste at sed suscipit exercitationem ut dolor.</p>
+    </div>
+  </div>
+</body>
+</html>

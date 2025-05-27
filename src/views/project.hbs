@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Project</title>
+
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- bootsrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7"
+      crossorigin="anonymous"
+    />
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+    />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- css -->
+    <link rel="stylesheet" href="/assets/style/style.css" />
+  </head>
+
+  <body>
+    <!-- NAVBAR START -->
+
+    {{> nav }}
+
+
+    <!-- NAVBAR END -->
+
+    <div id="myProject">
+      <div>
+        <h2>ADD MY PROJECT</h2>
+      </div>
+      <form action="/project"  id="projectForm"  method="post" enctype="multipart/form-data">
+        <div>
+          <label for="projectName">Project Name</label>
+          <input type="text" id="projectName" name="projectName" />
+        </div>
+      
+        <div class="date-row">
+          <div>
+            <label for="startDate">Start Date</label>
+            <input type="date" id="startDate" name="startDate" />
+          </div>
+          <div>
+            <label for="endDate">End Date</label>
+            <input type="date" id="endDate" name="endDate" />
+          </div>
+        </div>
+      
+        <div>
+          <label for="description">Description</label>
+          <textarea id="description" name="description"></textarea>
+        </div>
+      
+        <div>
+          <p>Technologies</p>
+          <div class="technology">
+            <label><input type="checkbox" name="tech" value="NodeJs" /> Node Js</label>
+            <label><input type="checkbox" name="tech" value="ReactJs" /> React Js</label>
+            <label><input type="checkbox" name="tech" value="NextJs" /> Next Js</label>
+            <label><input type="checkbox" name="tech" value="TypeScript" /> TypeScript</label>
+          </div>
+        </div>
+      
+        <div>
+          <label name="image" for="imageUpload">Upload Image</label>
+          <input type="file" id="imageUpload" accept="image/*"  name="image"/>
+          <img id="previewImage" />
+        </div>
+      
+        <button type="submit" id="btnMyProject">Submit</button>
+      </form>
+    </div>  
+
+   
+     {{#each projects}}   
+   <h2 class="myProject">MY PROJECT</h2>
+<section id="cardProject">
+  <div id="projectContainer" class="d-flex flex-wrap gap-3 mt-2">
+  <div class="card shadow-sm border-0 p-2" style="width: 20rem; border-radius: 15px;">
+    <a href="/project/{{this.id}}">
+    <img src="/uploads/{{this.image}}" class="card-img-top" alt="{{this.projectName}}" style="border-radius: 15px; height: 200px; object-fit: cover;" />
+    </a>
+    <div class="card-body">
+      <h5 class="card-title fw-bold">{{this.project_name}}</h5>
+      <p class="text-muted mb-2">durasi: {{this.duration}}</p>
+      <p class="card-text">{{this.description}}</p>
+      <div class="d-flex flex-wrap gap-3 align-items-center" style="font-size: 1.6rem; margin: 1rem 0;">
+        {{#each this.technologies}}
+          {{#if (eq this "NodeJs")}}<i class="fab fa-node"></i>{{/if}}
+          {{#if (eq this "ReactJs")}}<i class="fab fa-react"></i>{{/if}}
+          {{#if (eq this "NextJs")}}<i class="fab fa-js-square"></i>{{/if}}
+          {{#if (eq this "TypeScript")}}<i class="bi bi-typescript" style="font-size: 1.45rem;"></i></i>{{/if}}
+        {{/each}}
+      </div>
+      <div class="mt-4 d-flex gap-3">
+  <a href="/project/{{this.id}}/edit" class="btn btn-primary">Edit</a>
+  <form action="/project/{{this.id}}/delete" method="POST" onsubmit="return confirm('Yakin ingin menghapus project ini?')">
+    <button type="submit" class="btn btn-primary">Delete</button>
+  </form>
+</div>
+
+    </div>
+  </div>
+{{/each}}
+
+  </div>
+</section>
+
+    
+
+
+
+    {{!-- <script src="/src/assets/script/project.js" defer></script> --}}
+  </body>
+</html>
